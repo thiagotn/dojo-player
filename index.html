@@ -29,13 +29,7 @@
       document.addEventListener('DOMContentLoaded', async () => {
         const video = document.getElementById('video');
         const player = new shaka.Player(video);
-        const m3u8Url = getQueryParam('m3u8') || 'https://thiagotn.github.io/dojo-player/media/master.m3u8';
-
-        player.addEventListener('error', event => console.error(event.detail));
-
-        try {
-          await player.load(m3u8Url);
-          const isLive = player.isLive();
+        const isLive = player.isLive();
           if (isLive) {
             console.log('Live content');
             player.configure('streaming.alwaysStreamFromLive', true);
@@ -43,7 +37,12 @@
           } else {
             console.log('VOD content');
           }
+        const m3u8Url = getQueryParam('m3u8') || 'https://thiagotn.github.io/dojo-player/media/master.m3u8';
 
+        player.addEventListener('error', event => console.error(event.detail));
+
+        try {
+          await player.load(m3u8Url);
           console.log('The video has been loaded successfully!');
         } catch (e) {
           console.error('Error loading the video:', e);
