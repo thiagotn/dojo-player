@@ -14,8 +14,7 @@ jobs:
     steps:
       - name: Setup ShakaPackager
         run: |
-          # download https://github.com/shaka-project/shaka-packager/releases/download/v3.2.0/packager-linux-x64
-          curl -L -o https://github.com/shaka-project/shaka-packager/releases/download/v3.2.0/packager-linux-x64
+          curl -LOJ https://github.com/shaka-project/shaka-packager/releases/download/v3.2.0/packager-linux-x64
           chmod +x packager-linux-x64
           sudo mv packager-linux-x64 /usr/local/bin/packager
           # show version
