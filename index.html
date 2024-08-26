@@ -35,6 +35,11 @@
 
         try {
           await player.load(m3u8Url);
+          const isLive = player.isLive();
+          if (isLive) {
+            document.querySelector('.shaka-time-container').style.display = 'none';
+          }
+
           console.log('The video has been loaded successfully!');
         } catch (e) {
           console.error('Error loading the video:', e);
