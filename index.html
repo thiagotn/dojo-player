@@ -37,7 +37,11 @@
           await player.load(m3u8Url);
           const isLive = player.isLive();
           if (isLive) {
+            console.log('Live content');
+            player.configure('streaming.alwaysStreamFromLive', true);
             document.querySelector('.shaka-time-container').style.display = 'none';
+          } else {
+            console.log('VOD content');
           }
 
           console.log('The video has been loaded successfully!');
