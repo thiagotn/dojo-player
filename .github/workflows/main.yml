@@ -24,18 +24,13 @@ jobs:
 
       - name: Generate m3u8 from media/intro.mp4
         run: |
-          if [ -f "media/master.m3u8" ]; then
-            echo "Gerando arquivo m3u8 e arquivos de fragmento..."
-            chmod 755 media/intro.mp4
-            packager \
-              in=media/intro.mp4,stream=video,output=media/intro.mp4 \
-              in=media/intro.mp4,stream=audio,output=media/audio.mp4 \
-              --hls_master_playlist_output=media/master.m3u8 \
-              --hls_playlist_type=VOD \
-              --hls_base_url=https://thiagotn.github.io/dojo-player/media/
-          else
-            echo "Aquivo m3u8 já existe"
-          fi
+          chmod 755 media/intro.mp4
+          packager \
+            in=media/intro.mp4,stream=video,output=media/intro.mp4 \
+            in=media/intro.mp4,stream=audio,output=media/audio.mp4 \
+            --hls_master_playlist_output=media/master.m3u8 \
+            --hls_playlist_type=VOD \
+            --hls_base_url=https://thiagotn.github.io/dojo-player/media/
 
       - name: Add, commit and push changes
         uses: EndBug/add-and-commit@v9
