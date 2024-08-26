@@ -14,7 +14,10 @@ jobs:
     steps:
       - name: Setup ShakaPackager
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 python3-pip
-          sudo pip3 install shaka-packager
-          shaka-packager --version
+          # download https://github.com/shaka-project/shaka-packager/releases/download/v3.2.0/packager-linux-x64
+          curl -L -o https://github.com/shaka-project/shaka-packager/releases/download/v3.2.0/packager-linux-x64
+          chmod +x packager-linux-x64
+          sudo mv packager-linux-x64 /usr/local/bin/packager
+          # show version
+          packager --version
+
