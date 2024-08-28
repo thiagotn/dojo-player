@@ -15,6 +15,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version
+
       - name: Setup ShakaPackager
         run: |
           curl -LOJ https://github.com/shaka-project/shaka-packager/releases/download/v3.2.0/packager-linux-x64
