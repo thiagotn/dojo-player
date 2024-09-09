@@ -8,12 +8,12 @@ Exemplos de uso:
 
 # TODO
 
-| Item | Descrição                           | Status             |
-| ---- | ----------------------------------- | ------------------ |
-| 1    | Hello world shaka player            | :white_check_mark: |
-| 2    | Gerar manifestos hls/m3u8           | :white_check_mark: |
-| 3    | Gerar manifestos dash/mpd           |                    |
-| 4    | Como tratar audio fora de sincronia |                    |
-| 5    | Testar player dash                  |                    |
-| 6    | Testar player hls                   | :white_check_mark: |
-| 7    | Testar player bitmovin              |                    |
+| Item | Componente      | Descrição                           | Status             |
+| ---- | --------------- | ----------------------------------- | ------------------ |
+| 1    | Shaka Player    | Hello world shaka player            | :white_check_mark: |
+| 2    | Shaka Packager  | Gerar manifestos hls/m3u8           | :white_check_mark: |
+| 3    | Shaka Packager  | Gerar manifestos dash/mpd           |                    |
+| 4    | Shaka Player    | Como tratar audio fora de sincronia |                    |
+| 5    | dash.js Player  | Testar player dash                  |                    |
+| 6    | hls.js Player   | Testar player hls                   | :white_check_mark: |
+| 7    | Bitmovin Player | Testar player bitmovin              |                    |
