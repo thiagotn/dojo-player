@@ -1,60 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
+  <head>
     <title>Shaka Player HLS Example</title>
-    <script src="scripts/mux.js-7.0.3/mux.min.js"> </script>
-    <script src="scripts/shaka-player-4.10.11/shaka-player.compiled.js"> </script>
+    <script src="scripts/mux.js-7.0.3/mux.min.js"></script>
+    <script src="scripts/shaka-player-4.10.11/shaka-player.compiled.js"></script>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
 
-        video {
-            max-width: 100%;
-            max-height: 100%;
-        }
+      video {
+        max-width: 100%;
+        max-height: 100%;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <video id="video" width="640" controls></video>
     <script>
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const video = document.getElementById("video");
+        const player = new shaka.Player(video);
+        const manifestUri =
+          getQueryParam("manifestUri") ||
+          "https://thiagotn.github.io/dojo-player/media/master.m3u8";
+
+        player.addEventListener("error", (event) =>
+          console.error(event.detail),
+        );
+
+        try {
+          await player.load(manifestUri);
+          const manifest = player.getManifest();
+          const presentationType = manifest.presentationTimeline.isLive()
+            ? "live"
+            : "vod";
+
+          if (presentationType === "live") {
+            console.log("Live content");
+          } else {
+            console.log("VOD content");
+          }
+
+          console.log("The video has been loaded successfully!");
+        } catch (e) {
+          console.error("Error loading the video:", e);
         }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const video = document.getElementById('video');
-            const player = new shaka.Player(video);
-            const m3u8Url = getQueryParam('m3u8') || 'https://thiagotn.github.io/dojo-player/media/master.m3u8';
-
-            player.addEventListener('error', event => console.error(event.detail));
-
-            try {
-                await player.load(m3u8Url);
-                const manifest = player.getManifest();
-                const presentationType = manifest.presentationTimeline.isLive()
-                    ? 'live'
-                    : 'vod';
-
-                if (presentationType === 'live') {
-                    console.log('Live content');
-                } else {
-                    console.log('VOD content');
-                }
-
-                console.log('The video has been loaded successfully!');
-            } catch (e) {
-                console.error('Error loading the video:', e);
-            }
-        });
+      });
     </script>
-</body>
-
+  </body>
 </html>
