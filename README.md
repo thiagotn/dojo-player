@@ -1,5 +1,6 @@
 # DOJO Player
 
+https://thiagotn.github.io/dojo-player/index.html
 
 # TODO
 | Item | Descrição | Status |
