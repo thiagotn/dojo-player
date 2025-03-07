@@ -17,3 +17,5 @@ Exemplos de uso:
 | 5    | dash.js Player  | Testar player dash                  |                    |
 | 6    | hls.js Player   | Testar player hls                   | :white_check_mark: |
 | 7    | Bitmovin Player | Testar player bitmovin              |                    |
+
+testando copilot
